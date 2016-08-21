@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Audio Pulsar Synthesizer</title>
+<script src="sketch.js" type="text/javascript"></script>
+
+
+
+
+<!-- BUTTONS   -->
+
+<button id="button11" onclick="pulsaretSound()">Load Pulsaret</button>
+
+<button id="button12" onclick="playPulsaret()">Play Pulsaret</button>
+
+<form action>
+<input type="submit" value="Off">      <!-- input type is borrowed and reworked from (w3schools, n.d. b)   -->
+</form> 
+
+<button id="button3" onclick="loadSound('audio/sound.wav')">Load Buffer</button>
+
+<button id="button4" onclick="playSound()">Play Buffer</button>
+
+<button id="button5" onclick="StoparbitraryShaper()">Stop Arbitrary Shaper</button>
+
+<button id="button6" onclick="sine()">Sine</button>
+
+<button id="button7" onclick="square()">Square</button>
+
+<button id="button8" onclick="saw()">Sawtooth</button>
+
+<button id="button9" onclick="triangle()">Triangle</button>
+
+<button id="button10" onclick="trainSchedule()">TrainSchedule</button>
+
+ 
+
+</head>
+
+
+<body>
+<p>For the envelope of the duty cycle-silence ratio envelope to work first click the load sound button,
+   this load a file into the buffer. Wait a brief moment and then click play.
+</p>
+
+
+
+<br>
+<br>
+<br>   
+
+<!-- SLIDERS -->
+
+<br>
+<p>This slider controls the volume of the pulsaret waveform</p>
+<p>Volume of Pulsaret Waveform<input type="range" min="0.1" max="3.5" step="0.001" value="0.6" id="vol" name="vol" onchange="pulsaretVol(this.value)" oninput="changePulsaretVol()"></p>
+<input type="text" id="volumePulsaret" value="" >
+
+<br>
+<p>This slider controls the playback rate of the pulsarets<</p>
+<p>Playback Rate of Pulsaret Waveform<input type="range" min="0.1" max="7.5" step="0.001" value="1" id="PulRate" name="PulRate" onchange="pulsaretRate(this.value)" oninput="changePulsaretRate()"></p>
+<input type="text" id="playBackratePulsaret" value="" >
+
+<br>
+<p>This slider controls the Pitch Pulsaret waveform</p>
+<p>Pitch of Pulsaret Waveform<input type="range" min="0.1" max="1000.0" step="0.001" value="0.6" id="PulPitch" name="PulPitch" onchange="pulsaretPitch(this.value)" oninput="changePulsaretPitch()"></p>
+<input type="text" id="pitch" value="" >
+
+<br>
+<br>
+This slider control the rate of pulsar output. 
+<p>Fundamental Frequency<input type="range" min="0.1" max="20.0" step="0.001" value="5.0" id="rate" name="rate" onchange="fundamentalFreq(this.value)" oninput="changeEmissionRate()"></p> <p>0 to 20Hz - Infrasonic Range</p>
+<input type="text" id="infraFreq" value="" >
+
+<br>
+<p>Fundamental Frequency<input type="range" min="20.0" max="100.0" step="0.001" value="5.0" id="rateTwentyPlus" name="rateTwentyPlus" onchange="fundamentalFreqAboveTwenty(this.value)" oninput="changeEmissionRateAboveTwenty()"></p><p>20 to 100Hz - Audio Range</p>         
+<input type="text" id="audioRangeFreq" value="" >
+
+<br>
+<p>This slider controls the Duty cycle (formant frequency) of the Pulsaret waveform</p>
+<p>Duty cycle-Silence Ratio<input type="range" min="-5.4" max="5.50" step="0.00001" value="0.0" id="pwm" name="pwm" onchange="dutyCycleValue(this.value)" oninput="changePWM()"></p>  
+<input type="text" id="dutyCycleValue" value="" >
+
+<br>
+<p> This slider controls the rate at which the envelope for the Duty Cycle-Silence Ratio plays at </p>
+<p>Duty cycle-Silence Ratio Envelope Rate - 0.002 to 0.3<input type="range" min="0.002" max="0.3" step="0.001" value="0.003" id="dcRate" name="dcRate" onchange="bufferPlaybackRateValueFast(this.value)" oninput="changeDCRate()"></p>
+<input type="text" id="bufferRate1" value="" >
+
+<br>
+<p>Duty cycle-Silence Ratio Envelope Rate - 0.0000001 to 0.0003<input type="range" min="0.000001" max="0.0003" step="0.0000001" value="0.003" id="slowdcRate" name="slowdcRate" onchange="bufferPlaybackRateValueSlow(this.value)" oninput="changeSlowDCRate()"></p>
+<input type="text" id="bufferRate2" value="" > 
+
+
+
+
+
+
+
+
+<br>
+ 
+</body>
+<script>
+function pulsaretVol(val) { // changes the volume of the pulsaret oscillator
+document.getElementById('volumePulsaret').value=val; 
+}
+
+function pulsaretRate(val) { // changes the playback rate of the pulsaret in the buffer
+document.getElementById('playBackratePulsaret').value=val; 
+}
+
+function pulsaretPitch(val) { // changes the pitch of the pulsaret in the buffer
+document.getElementById('pitch').value=val; 
+}
+
+function pulsaretPitch(val) { // changes the pitch of the pulsaret in the buffer
+document.getElementById('pitch').value=val; 
+}
+
+function fundamentalFreq(val) { // changes the fundamental frequency 0 - 20Hz  
+document.getElementById('infraFreq').value=val; 
+}  
+  
+function fundamentalFreqAboveTwenty(val) {// changes the fundamental frequnecy 20 - 100Hz
+document.getElementById('audioRangeFreq').value=val; 
+} 
+
+function dutyCycleValue(val) {// changes duty cycle silence ratio
+document.getElementById('dutyCycleValue').value=val; 
+} 
+
+function bufferPlaybackRateValueFast(val) {// changes playback rate of buffer from 0.002 to 0.3
+document.getElementById('bufferRate1').value=val; 
+} 
+
+function bufferPlaybackRateValueSlow(val) {// changes playback rate of buffer from 0.0000001 to 0.0003
+document.getElementById('bufferRate2').value=val; 
+}
+
+
+</script>
+</html>
